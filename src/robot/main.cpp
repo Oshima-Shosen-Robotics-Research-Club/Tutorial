@@ -1,18 +1,35 @@
+#include "Tires.h"
+#include "components/ims/ImReceiver.h"
+#include "controller/Controller.h"
 #include <Arduino.h>
 
-// put function declarations here:
-int myFunction(int, int);
+#define RX PD6
+#define TX PD7
+
+ImReceiver imReceiver(RX, TX);
 
 void setup() {
-  // put your setup code here, to run once:
-  int result = myFunction(2, 3);
 }
 
 void loop() {
-  // put your main code here, to run repeatedly:
-}
+  while (!imReceiver.available()) {
+    delay(100);
+  }
 
-// put function definitions here:
-int myFunction(int x, int y) {
-  return x + y;
+  Controller controller;
+  imReceiver.receive(controller);
+
+  if (controller.forward) {
+    Tires::forward();
+  } else if (controller.reverse) {
+    Tires::reverse();
+  } else {
+    Tires::stop();
+  }
+
+  if (controller.left) {
+    Tires::turnLeft();
+  } else if (controller.right) {
+    Tires::turnRight();
+  }
 }
