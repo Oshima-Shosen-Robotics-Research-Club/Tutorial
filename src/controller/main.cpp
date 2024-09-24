@@ -17,6 +17,7 @@ void setup() {
   pinMode(REVERSE_PIN, INPUT_PULLUP);
   pinMode(LEFT_PIN, INPUT_PULLUP);
   pinMode(RIGHT_PIN, INPUT_PULLUP);
+  im.begin();
 }
 
 // 繰り返し実行される処理
