@@ -1,5 +1,4 @@
-#ifndef CONTROLLER_H
-#define CONTROLLER_H
+#pragma once
 
 // コントローラーの構造体
 struct Controller {
@@ -8,5 +7,3 @@ struct Controller {
   unsigned int left : 1;    // 左
   unsigned int right : 1;   // 右
 };
-
-#endif // CONTROLLER_H
