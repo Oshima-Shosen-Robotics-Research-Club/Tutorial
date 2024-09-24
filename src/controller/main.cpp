@@ -1,5 +1,5 @@
 #include "Controller.h"
-#include "components/ims/ImSender.h"
+#include <components/ims/ImSender.h>
 #include <Arduino.h>
 
 // ピン定義
@@ -29,4 +29,4 @@ void loop() {
   controller.right = !digitalRead(RIGHT_PIN);
   imSender.send(controller);
   delay(100);
-} 
+}
