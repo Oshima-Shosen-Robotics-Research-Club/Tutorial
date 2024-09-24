@@ -1,23 +1,20 @@
 #include "Tires.h"
-#include <components/ims/ImReceiver.h>
 #include "controller/Controller.h"
 #include <Arduino.h>
+#include <components/ims/IM920SL.h>
 
-#define RX PD6
-#define TX PD7
+SerialPort serialPort(Serial);
+ImReceiver im(serialPort);
 
-ImReceiver imReceiver(RX, TX);
-
-void setup() {
-}
+void setup() {}
 
 void loop() {
-  while (!imReceiver.available()) {
+  while (!im.available()) {
     delay(100);
   }
 
   Controller controller;
-  imReceiver.receive(controller);
+  im.receive(controller);
 
   if (controller.forward) {
     Tires::forward();
