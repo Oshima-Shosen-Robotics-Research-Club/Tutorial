@@ -3,10 +3,10 @@
 #include <components/ims/IM920SL.h>
 
 // ピン定義
-#define FORWARD_PIN PD4
-#define REVERSE_PIN PD5
-#define LEFT_PIN PD6
-#define RIGHT_PIN PD7
+#define FORWARD_PIN PIN_PD4
+#define REVERSE_PIN PIN_PD5
+#define LEFT_PIN PIN_PD6
+#define RIGHT_PIN PIN_PD7
 
 SerialPort serialPort(Serial);
 ImSender im(serialPort);
