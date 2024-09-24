@@ -1,9 +1,14 @@
+// このファイルが複数回読み込まれるのを防ぐための命令
+// プログラムが一度だけこのファイルを使うようにする
 #pragma once
 
-// コントローラーの構造体
+// コントローラーの動きを管理するための構造体（データのまとまり）
+// この構造体は「Controller」という名前で、前進や後退、左右の動きを保存します
 struct Controller {
-  unsigned int forward : 1; // 前進
-  unsigned int reverse : 1; // 後退
-  unsigned int left : 1;    // 左
-  unsigned int right : 1;   // 右
+  unsigned int forward : 1; // 前に進むかどうかを管理（1ビット、0または1を保存）
+  unsigned int reverse : 1; // 後ろに進むかどうかを管理（1ビット）
+  unsigned int left : 1;    // 左に進むかどうかを管理（1ビット）
+  unsigned int right : 1; // 右に進むかどうかを管理（1ビット）
 };
+
+// それぞれの動きは1ビットで表され、1ならその方向に進む、0なら進まないという意味です。
