@@ -5,9 +5,7 @@
 #include <controller/ControllerData.h>
 
 // モーターを扱うための変数を作成
-NonSpeedAdjustable zenrinSenkaiyouMotor(PIN_PD2, PIN_PD3);
-NonSpeedAdjustable kourinMigiMotor(PIN_PD4, PIN_PD5);
-NonSpeedAdjustable kourinHidariMotor(PIN_PD6, PIN_PD7);
+NonSpeedAdjustable motor(PIN_PD2, PIN_PD3);
 
 // IMを扱うための変数を作成
 SerialPort serial(Serial);
@@ -28,23 +26,9 @@ void loop() {
 
   // dataを元にモーターを制御
   if (data.motors[0].forward)
-    zenrinSenkaiyouMotor.forward();
+    motor.forward();
   else if (data.motors[0].reverse)
-    zenrinSenkaiyouMotor.reverse();
+    motor.reverse();
   else
-    zenrinSenkaiyouMotor.stop();
-
-  if (data.motors[1].forward)
-    kourinMigiMotor.forward();
-  else if (data.motors[1].reverse)
-    kourinMigiMotor.reverse();
-  else
-    kourinMigiMotor.stop();
-
-  if (data.motors[2].forward)
-    kourinHidariMotor.forward();
-  else if (data.motors[2].reverse)
-    kourinHidariMotor.reverse();
-  else
-    kourinHidariMotor.stop();
+    motor.stop();
 }
