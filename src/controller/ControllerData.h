@@ -10,4 +10,4 @@
 #define NUM_STICKS 0  // スティックは使用しない
 
 // Controller型をControllerData型として扱えるようにする
-using ControllerData = Controller<NUM_MOTORS, NUM_BUTTONS, NUM_STICKS>;
+#define ControllerData Controller<NUM_MOTORS, NUM_BUTTONS, NUM_STICKS>
