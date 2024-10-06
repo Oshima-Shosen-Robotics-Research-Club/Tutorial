@@ -1,15 +1,13 @@
 // 他のファイルで実装された処理を流用するためにインクルード
 #include <Arduino.h>
-#include <components/ims/IM920SL.h>
-#include <components/motors/NonSpeedAdjustable.h>
-#include <controller/ControllerData.h>
+#include <controller/Controller.h>
+#include <liboshima.h>
 
 // モーターを扱うための変数を作成
 NonSpeedAdjustable motor(PIN_PD2, PIN_PD3);
 
 // IMを扱うための変数を作成
-SerialPort serial(Serial);
-IM920SL im(serial);
+IM920SL im(Serial);
 
 // 1回だけ実行される
 void setup() {
@@ -20,15 +18,20 @@ void setup() {
 // 繰り返し実行される
 void loop() {
   // ボタンの状態を保持する変数を作成
-  ControllerData data;
-  // dataを受信
-  im.receive(data);
+  Controller controller;
+  // controllerを受信
+  im.receive(controller);
 
-  // dataを元にモーターを制御
-  if (data.motors[0].forward)
+  // controllerを元にモーターを制御
+  switch (controller.motors[0]) {
+  case MotorStateEnum::Forward:
     motor.forward();
-  else if (data.motors[0].reverse)
+    break;
+  case MotorStateEnum::Reverse:
     motor.reverse();
-  else
+    break;
+  case MotorStateEnum::Stop:
     motor.stop();
+    break;
+  }
 }

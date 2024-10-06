@@ -1,15 +1,14 @@
 // 他のファイルで実装された処理を流用するためにインクルード
-#include "ControllerData.h"
+#include "Controller.h"
 #include <Arduino.h>
-#include <components/ims/IM920SL.h>
+#include <liboshima.h>
 
 // ピン番号にボタンの名前を付ける
 #define ZENTEN_BUTTON PIN_PD2
 #define KOUTEN_BUTTON PIN_PD3
 
 // IMを扱うための変数を作成
-SerialPort serial(Serial);
-IM920SL im(serial);
+IM920SL im(Serial);
 
 // 1回だけ実行される
 void setup() {
@@ -23,10 +22,15 @@ void setup() {
 // 繰り返し実行される
 void loop() {
   // ボタンの状態を保持する変数を作成
-  ControllerData data;
-  // 各ピンの状態を読み取り、dataに格納
-  data.motors[0].forward = !digitalRead(ZENTEN_BUTTON);
-  data.motors[0].reverse = !digitalRead(KOUTEN_BUTTON);
-  // dataを送信
-  im.send(data);
+  Controller controller;
+  // 各ピンの状態を読み取り、controllerに格納
+  if (digitalRead(ZENTEN_BUTTON) == LOW) {
+    controller.motors[0] = MotorStateEnum::Forward;
+  } else if (digitalRead(KOUTEN_BUTTON) == LOW) {
+    controller.motors[0] = MotorStateEnum::Reverse;
+  } else {
+    controller.motors[0] = MotorStateEnum::Stop;
+  }
+  // controllerを送信
+  im.send(controller);
 }
