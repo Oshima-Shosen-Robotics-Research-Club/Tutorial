@@ -28,5 +28,5 @@ void loop() {
     controller.motors[0] = MotorStateEnum::STOP;
   }
   // controllerを送信
-  im.send(controller, ImSenderMode::CAREER_SENSE);
+  im.send(controller, ImSendeMode::CAREER_SENSE);
 }
