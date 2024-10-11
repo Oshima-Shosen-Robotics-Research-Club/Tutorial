@@ -30,5 +30,5 @@ void loop() {
   }
   
   // controllerを送信
-  im.send(controller, ImSendeMode::CAREER_SENSE);
+  im.send(controller, ImSendMode::CAREER_SENSE);
 }
