@@ -19,6 +19,7 @@ void setup() {
 void loop() {
   // ボタンの状態を保持する変数を作成
   Controller controller;
+
   // 各ピンの状態を読み取り、controllerに格納
   if (zensinButton.isPressed()) {
     controller.motors[0] = MotorStateEnum::FORWARD;
@@ -27,6 +28,7 @@ void loop() {
   } else {
     controller.motors[0] = MotorStateEnum::STOP;
   }
+  
   // controllerを送信
   im.send(controller, ImSendeMode::CAREER_SENSE);
 }
