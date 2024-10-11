@@ -3,17 +3,14 @@
 #include <liboshima.h>
 
 // ピン番号にボタンの名前を付ける
-#define ZENTEN_BUTTON PIN_PD2
-#define KOUTEN_BUTTON PIN_PD3
+Button zensinButton(PIN_PD2);
+Button koutenButton(PIN_PD3);
 
 // IMを扱うための変数を作成
 IM920SL im(Serial);
 
 // 1回だけ実行される
 void setup() {
-  // 各ピンをボタンとして使えるように設定
-  pinMode(ZENTEN_BUTTON, INPUT_PULLUP);
-  pinMode(KOUTEN_BUTTON, INPUT_PULLUP);
   // IM920SLモジュールの通信を開始
   im.beginSerial();
 }
@@ -23,9 +20,9 @@ void loop() {
   // ボタンの状態を保持する変数を作成
   Controller controller;
   // 各ピンの状態を読み取り、controllerに格納
-  if (digitalRead(ZENTEN_BUTTON) == LOW) {
+  if (zensinButton.isPressed()) {
     controller.motors[0] = MotorStateEnum::FORWARD;
-  } else if (digitalRead(KOUTEN_BUTTON) == LOW) {
+  } else if (koutenButton.isPressed()) {
     controller.motors[0] = MotorStateEnum::REVERSE;
   } else {
     controller.motors[0] = MotorStateEnum::STOP;
