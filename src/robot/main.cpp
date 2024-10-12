@@ -20,7 +20,7 @@ void loop() {
   // ボタンの状態を保持する変数を作成
   Controller controller;
   // controllerを受信
-  im.receive(controller, ImReceiveMode::NO_WAIT);
+  im.receive(controller, ImReceiveMode::WAIT);
 
   // controllerを元にモーターを制御
   switch (controller.motors[0]) {
