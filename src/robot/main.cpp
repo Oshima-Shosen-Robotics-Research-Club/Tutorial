@@ -3,7 +3,7 @@
 #include <liboshima.h>
 
 // モーターを扱うための変数を作成
-// motor=(PIN_PD2, PIN_PD3);と覚えると良い
+// NonSpeedAdjustable motor = (PIN_PD2, PIN_PD3); と覚えると良い
 NonSpeedAdjustable motor(PIN_PD2, PIN_PD3);
 
 // IMを扱うための変数を作成
