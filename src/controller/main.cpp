@@ -1,5 +1,6 @@
 // 他のファイルで実装された処理を流用するためにインクルード
 #include "Controller.h"
+#include <Arduino.h>
 #include <liboshima.h>
 
 // ピン番号にボタンの名前を付ける
@@ -22,11 +23,11 @@ void loop() {
 
   // 各ピンの状態を読み取り、controllerに格納
   if (zensinButton.isPressed()) {
-    controller.motors[0] = MotorButtonState::FORWARD;
+    controller.motorButtons[0] = MotorButtonState::FORWARD;
   } else if (koutenButton.isPressed()) {
-    controller.motors[0] = MotorButtonState::REVERSE;
+    controller.motorButtons[0] = MotorButtonState::REVERSE;
   } else {
-    controller.motors[0] = MotorButtonState::STOP;
+    controller.motorButtons[0] = MotorButtonState::STOP;
   }
 
   // controllerを送信

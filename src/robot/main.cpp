@@ -1,4 +1,5 @@
 // 他のファイルで実装された処理を流用するためにインクルード
+#include <Arduino.h>
 #include <controller/Controller.h>
 #include <liboshima.h>
 
@@ -20,10 +21,10 @@ void loop() {
   // ボタンの状態を保持する変数を作成
   Controller controller;
   // controllerを受信
-  im.receive(controller, ImReceiveMode::WAIT);
+  im.receive(&controller, ImReceiveMode::WAIT);
 
   // controllerを元にモーターを制御
-  switch (controller.motors[0]) {
+  switch (controller.motorButtons[0]) {
   case MotorButtonState::FORWARD:
     motor.forward();
     break;
