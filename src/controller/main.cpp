@@ -22,13 +22,13 @@ void loop() {
 
   // 各ピンの状態を読み取り、controllerに格納
   if (zensinButton.isPressed()) {
-    controller.motors[0] = MotorStateEnum::FORWARD;
+    controller.motors[0] = MotorButtonState::FORWARD;
   } else if (koutenButton.isPressed()) {
-    controller.motors[0] = MotorStateEnum::REVERSE;
+    controller.motors[0] = MotorButtonState::REVERSE;
   } else {
-    controller.motors[0] = MotorStateEnum::STOP;
+    controller.motors[0] = MotorButtonState::STOP;
   }
-  
+
   // controllerを送信
   im.send(controller, ImSendMode::CAREER_SENSE);
 }

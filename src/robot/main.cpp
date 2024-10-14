@@ -24,13 +24,13 @@ void loop() {
 
   // controllerを元にモーターを制御
   switch (controller.motors[0]) {
-  case MotorStateEnum::FORWARD:
+  case MotorButtonState::FORWARD:
     motor.forward();
     break;
-  case MotorStateEnum::REVERSE:
+  case MotorButtonState::REVERSE:
     motor.reverse();
     break;
-  case MotorStateEnum::STOP:
+  case MotorButtonState::STOP:
     motor.stop();
     break;
   }
